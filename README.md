@@ -50,7 +50,7 @@ optional arguments:
   -d, --defang          naively defang URL tokens
   -r, --refang          naively refang URL tokens
   -e EXTRA_STRIP_CHARS, --extra-strip-chars EXTRA_STRIP_CHARS
-                        extra chars to strip```
+                        extra chars to strip
 
 ```
 
