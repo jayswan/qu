@@ -16,7 +16,7 @@ I got tired of doing this with chains of shell utilities, so `qu` is a simple sc
 - `cp qu.py qu`
 - `chmod +x qu`
 - `mv qu <wherever in your path you put your local hacks>`
-  - I use `/usr/local/bin` for local hack-scripts but people have Opinions on this, so do what you like.
+  - I use `/usr/local/bin` for local hack-scripts but people have Opinions :tm: on this, so do what you like.
 
 ## Inputs
 - newline delimted (commas stripped)
