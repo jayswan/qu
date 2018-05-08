@@ -5,6 +5,7 @@ import sys
 try:
     from urllib.parse import urlparse,urlunparse
 except ImportError:
+    # because OSX still defaults to Python 2
     from urlparse import urlparse
     from urlparse import urlunparse
 
@@ -14,7 +15,7 @@ def strip_chars(s,strip_chars=["'",'"']):
     return s
 
 def defang(url):
-    # unclose URL domain components in []
+    # enclose URL domain components in []
     parsed = urlparse(url)
     defanged_netloc = parsed.netloc.replace('.','[.]')
     return urlunparse([parsed[0],defanged_netloc,parsed[2],parsed[3],parsed[4],parsed[5]])
@@ -38,7 +39,6 @@ def get_tokens(input):
     # space delimited
     else:
         tokens = [i.strip() for i in input.split(' ')]
-
 
     return tokens
 
@@ -88,5 +88,6 @@ def main():
         output = ' '.join(tokens)
 
     print(output)
+
 if __name__ == '__main__':
     main()
