@@ -14,11 +14,12 @@ def strip_chars(s,strip_chars=["'",'"']):
         s = s.replace(c,'')
     return s
 
-def defang(url):
+def defang(s):
     # enclose URL domain components in []
-    parsed = urlparse(url)
-    defanged_netloc = parsed.netloc.replace('.','[.]')
-    return urlunparse([parsed[0],defanged_netloc,parsed[2],parsed[3],parsed[4],parsed[5]])
+    parts = s.split('.')
+    first = '.'.join(parts[0:-1])
+    defanged = '[.]'.join([first,parts[-1]])
+    return defanged
 
 def refang(url,strip_chars=['[',']']):
     # strip [] from a string, naively refanging defanged URLs
@@ -64,10 +65,10 @@ def main():
         tokens = [strip_chars(token,strip_chars=args.extra_strip_chars).strip() for token in tokens]
 
     if args.defang:
-        tokens = [defang(token) for token in tokens if 'http' in token]
+        tokens = [defang(token) for token in tokens]
 
     if args.refang:
-        tokens = [refang(token) for token in tokens if 'http' in token]
+        tokens = [refang(token) for token in tokens]
 
     if args.single_quote:
         tokens = ["'{}'".format(i) for i in tokens]
