@@ -41,6 +41,9 @@ def get_tokens(input):
     else:
         tokens = [i.strip() for i in input.split(' ')]
 
+    # strip any blank tokens remaining
+    tokens = [i for i in tokens if i!='']
+
     return tokens
 
 def main():
@@ -51,6 +54,7 @@ def main():
     parser.add_argument('-q1','--single-quote',action='store_true',help='output single quoted')
     parser.add_argument('-q2','--double-quote',action='store_true',help='output double quoted')
     parser.add_argument('-k','--splunk-or',action='store_true',help='output Splunk OR style')
+    parser.add_argument('-T','--term',action='store_true',help='output Splunk OR wrapped in TERM()')
     parser.add_argument('-d','--defang',action='store_true',help='naively defang URL tokens')
     parser.add_argument('-r','--refang',action='store_true',help='naively refang URL tokens')
     parser.add_argument('-e','--extra-strip-chars',help='extra chars to strip')
@@ -83,6 +87,9 @@ def main():
     # Splunk OR style
     elif args.splunk_or:
         tokens = ['"{}"'.format(i) for i in tokens]
+        output = ' OR '.join(tokens)
+    elif args.term:
+        tokens = ['TERM("{}")'.format(i) for i in tokens]
         output = ' OR '.join(tokens)
     # default to space delimited
     else:
