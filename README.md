@@ -1,4 +1,6 @@
 # qu
+"This seemed dumb at first but now I use it all the time." - a colleague
+
 Handle data quotation and spacing in the clipboard.
 
 I constantly need to transform data in the clipboard between various formats:
@@ -33,6 +35,8 @@ I got tired of doing this with chains of shell utilities, so `qu` is a simple sc
 - newline delimted
 - Splunk "OR" formatting
 - Splunk "OR" formatting with each term wrapped in `TERM()`
+- defanged URL (e.g. `https://foo[.]com`)
+- refanged URL (e.g. `hxxps://foo[.]com` -> `https://foo.com`)
 
 ## Examples
 ```

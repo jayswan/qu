@@ -21,10 +21,11 @@ def defang(s):
     defanged = '[.]'.join([first,parts[-1]])
     return defanged
 
-def refang(url,strip_chars=['[',']']):
-    # strip [] from a string, naively refanging defanged URLs
+def refang(url,strip_chars='[]'):
+    # naively refang URLs
     for c in strip_chars:
-        url = url.replace(c,'')
+       url = url.replace(c,'')
+    url = url.replace('hxxp','http')
     return url
 
 def get_tokens(input):
